@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:football/club/domain/entities/club.dart';
 
@@ -61,6 +63,15 @@ class ClubModel extends Club {
       'stadium': stadium.toJson(),
       'location': location.toJson(),
     } as Map<String, dynamic>;
+  }
+
+  static List<ClubModel> fromJsonList(dynamic jsonList) {
+    Iterable list = json.decode(jsonList);
+    return List<ClubModel>.from(
+      list.map(
+        (model) => ClubModel.fromJson(model),
+      ),
+    );
   }
 }
 
