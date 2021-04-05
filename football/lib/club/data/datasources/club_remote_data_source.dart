@@ -4,7 +4,7 @@ import 'package:football/club/data/models/club_model.dart';
 import 'package:football/club/domain/entities/club.dart';
 import 'package:football/core/error/exceptions.dart';
 
-const API_URL = 'API_URL';
+const API_URL = 'https://public.allaboutapps.at/hiring/clubs.json';
 
 abstract class ClubRemoteDataSource {
   ///Calls the https://public.allaboutapps.at/hiring/clubs.json endpoint

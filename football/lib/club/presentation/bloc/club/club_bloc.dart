@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:football/club/domain/entities/club.dart';
 import 'package:football/club/domain/usecases/get_clubs.dart';
 import 'package:football/core/error/failure_extensions.dart';
 
@@ -12,7 +13,8 @@ const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 
 class ClubBloc extends Bloc<ClubEvent, ClubState> {
   final GetClubs getClubs;
-
+  bool ascOrder = true;
+  List<Club> cachedClubs = [];
   ClubBloc({
     @required GetClubs cubs,
   })  : assert(cubs != null),
@@ -21,8 +23,6 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
 
   @override
   Stream<ClubState> mapEventToState(ClubEvent event) async* {
-    bool ascOrder = true;
-    var cachedClubs;
     if (event is GetClubsE) {
       yield Loading();
       final failureOrClubs = await getClubs();
@@ -35,12 +35,13 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
         },
       );
     } else if (event is ResortClubs) {
+      ascOrder = !ascOrder;
       if (ascOrder) {
         cachedClubs.sort((a, b) => a.name.compareTo(b.name));
       } else {
         cachedClubs.sort((a, b) => b.value.compareTo(a.value));
       }
-      yield cachedClubs;
+      yield Loaded(clubs: cachedClubs);
     }
   }
 }

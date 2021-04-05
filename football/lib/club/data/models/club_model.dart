@@ -4,26 +4,16 @@ import 'package:flutter/foundation.dart';
 import 'package:football/club/domain/entities/club.dart';
 
 class ClubModel extends Club {
-  final String id;
-  final String name;
-  final String country;
-  final int value;
-  final String image;
-  final bool hasImage;
-  final int europeanTitles;
-  final StadiumModel stadium;
-  final LocationModel location;
-
   ClubModel({
-    @required this.id,
-    @required this.name,
-    @required this.country,
-    @required this.value,
-    @required this.image,
-    @required this.hasImage,
-    @required this.europeanTitles,
-    @required this.stadium,
-    @required this.location,
+    @required String id,
+    @required String name,
+    @required String country,
+    @required int value,
+    @required String image,
+    @required bool hasImage,
+    @required int europeanTitles,
+    @required LocationModel location,
+    @required StadiumModel stadium,
   }) : super(
           name: name,
           id: id,
@@ -43,8 +33,8 @@ class ClubModel extends Club {
       country: json['country'] as String,
       value: (json['value'] as num).toInt(),
       image: json['image'] as String,
-      hasImage: json['hasImage'] as bool,
-      europeanTitles: (json['europeanTitles'] as num).toInt(),
+      hasImage: (json['image'] as String).length > 0,
+      europeanTitles: (json['european_titles'] as num).toInt(),
       stadium: StadiumModel.fromJson(json['stadium']),
       location: LocationModel.fromJson(json['location']),
     );
@@ -60,8 +50,8 @@ class ClubModel extends Club {
       'image': this.image,
       'hasImage': this.hasImage,
       'europeanTitles': this.europeanTitles,
-      'stadium': stadium.toJson(),
-      'location': location.toJson(),
+      'stadium': StadiumModel.objToJson(stadium),
+      'location': LocationModel.objToJson(location),
     } as Map<String, dynamic>;
   }
 
@@ -76,12 +66,9 @@ class ClubModel extends Club {
 }
 
 class LocationModel extends Location {
-  final double lat;
-  final double lng;
-
   LocationModel({
-    @required this.lat,
-    @required this.lng,
+    @required double lat,
+    @required double lng,
   });
 
   factory LocationModel.fromJson(Map<String, dynamic> json) {
@@ -89,6 +76,14 @@ class LocationModel extends Location {
       lat: (json['lat'] as num).toDouble(),
       lng: (json['lng'] as num).toDouble(),
     );
+  }
+
+  static Map<String, dynamic> objToJson(Location location) {
+    // ignore: unnecessary_cast
+    return {
+      'lat': location.lat,
+      'lng': location.lng,
+    } as Map<String, dynamic>;
   }
 
   Map<String, dynamic> toJson() {
@@ -101,19 +96,24 @@ class LocationModel extends Location {
 }
 
 class StadiumModel extends Stadium {
-  final String name;
-  final BigInt size;
-
   StadiumModel({
-    @required this.name,
-    @required this.size,
+    @required String name,
+    @required BigInt size,
   });
 
   factory StadiumModel.fromJson(Map<String, dynamic> json) {
     return new StadiumModel(
       name: json['name'] as String,
-      size: json['size'] as BigInt,
+      size: BigInt.from(json['size']),
     );
+  }
+
+  static Map<String, dynamic> objToJson(Stadium stadium) {
+    // ignore: unnecessary_cast
+    return {
+      'name': stadium.name,
+      'size': stadium.size,
+    } as Map<String, dynamic>;
   }
 
   Map<String, dynamic> toJson() {
