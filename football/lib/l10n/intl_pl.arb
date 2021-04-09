@@ -1,0 +1,28 @@
+{
+  "@@last_modified": "2021-04-09T21:47:57.369490",
+  "appTitle": "wszystko o klubach",
+  "@appTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingData": "Ładowanie danych ...",
+  "@loadingData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "club": "Klub",
+  "@club": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstMessage": " z xCountry jest wart xValue mln euro.",
+  "@firstMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "secondMessage": " do tej pory odniósł xVictorious vtriumf na poziomie europejskim",
+  "@secondMessage": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

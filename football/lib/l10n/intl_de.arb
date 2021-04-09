@@ -1,0 +1,28 @@
+{
+  "@@last_modified": "2021-04-09T21:47:57.369490",
+  "appTitle": "Alles über Clubs",
+  "@appTitle": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "loadingData": "Lade Daten ...",
+  "@loadingData": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "club": "Der Club",
+  "@club": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "firstMessage": " aus xCountry hat einen Wert von xValue Millionen Euro.",
+  "@firstMessage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "secondMessage": " konnte bislang xVictorious Siege auf europäischer Ebene erreichen.",
+  "@secondMessage": {
+    "type": "text",
+    "placeholders": {}
+  }
+}
