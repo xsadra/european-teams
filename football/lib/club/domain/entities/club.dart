@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:sailor/sailor.dart';
 
-class Club {
+class Club with BaseArguments {
   final String id;
   final String name;
   final String country;

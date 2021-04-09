@@ -23,16 +23,16 @@ class CustomListTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                customIcon(),
-                SizedBox(width: 5),
+                _customIcon(),
+                const SizedBox(width: 5),
                 Expanded(
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      clubName(),
-                      clubCountry(),
-                      clubValue(),
+                      _clubName(),
+                      _clubCountry(),
+                      _clubValue(),
                     ],
                   ),
                 ),
@@ -40,57 +40,47 @@ class CustomListTile extends StatelessWidget {
             ),
           ),
         ),
-        tileSplitter(),
+        _tileSplitter(),
       ],
     );
   }
 
-  SizedBox tileSplitter() {
-    return SizedBox(
-      height: 1,
-      child: Container(
-        color: Colors.black38,
-      ),
-    );
-  }
-
-  Row clubValue() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text(
-          club.value.toString() + " Millionen",
-          style: TextStyle(color: Colors.black87),
+  SizedBox _tileSplitter() => SizedBox(
+        height: 1,
+        child: Container(
+          color: Colors.black38,
         ),
-      ],
-    );
-  }
+      );
 
-  Text clubCountry() {
-    return Text(
-      club.country,
-      style: TextStyle(fontSize: 10.0, color: Colors.black54),
-    );
-  }
+  Row _clubValue() => Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Text(
+            club.value.toString() + " Millionen",
+            style: const TextStyle(color: Colors.black87),
+          ),
+        ],
+      );
 
-  Text clubName() {
-    return Text(
-      club.name,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 18.0,
-        color: Colors.black87,
-      ),
-    );
-  }
+  Text _clubCountry() => Text(
+        club.country,
+        style: const TextStyle(fontSize: 10.0, color: Colors.black54),
+      );
 
-  SizedBox customIcon() {
-    return SizedBox(
-      height: 56.0,
-      width: 56.0,
-      child: club.hasImage
-          ? Image.network(club.image)
-          : Icon(Icons.error, color: Colors.black26, size: 48.0),
-    );
-  }
+  Text _clubName() => Text(
+        club.name,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18.0,
+          color: Colors.black87,
+        ),
+      );
+
+  SizedBox _customIcon() => SizedBox(
+        height: 56.0,
+        width: 56.0,
+        child: club.hasImage
+            ? Image.network(club.image)
+            : const Icon(Icons.error, color: Colors.black26, size: 48.0),
+      );
 }

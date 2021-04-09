@@ -15,6 +15,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
   final GetClubs getClubs;
   bool ascOrder = true;
   List<Club> cachedClubs = [];
+
   ClubBloc({
     @required GetClubs cubs,
   })  : assert(cubs != null),
@@ -23,7 +24,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
 
   @override
   Stream<ClubState> mapEventToState(ClubEvent event) async* {
-    if (event is GetClubsE) {
+    if (event is GetClubsOnInit) {
       yield Loading();
       final failureOrClubs = await getClubs();
       yield failureOrClubs.fold(
@@ -42,6 +43,7 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
         cachedClubs.sort((a, b) => b.value.compareTo(a.value));
       }
       yield Loaded(clubs: cachedClubs);
+      yield SortedBy(ascOrder: ascOrder);
     }
   }
 }
