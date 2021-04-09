@@ -1,28 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:football/club/domain/entities/club.dart';
 import 'package:football/club/presentation/bloc/club/bloc.dart';
-import 'package:football/club/presentation/widgets/action_icon_button.dart';
-import 'package:football/club/presentation/widgets/custom_list_tile.dart';
+import 'package:football/club/presentation/widgets/widgets.dart';
+import 'package:football/locale/app_localization.dart';
 
 const kActionIconImagePath = 'assets/icons/filter.png';
 
 class ClubsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    String appTitle = AppLocalizations.of(context).appTitle;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('all about clubs'),
+        title: Text(appTitle),
         actions: [
           ActionIconButton(
             imagePath: kActionIconImagePath,
-            onPressed: () => context.read<ClubBloc>().add(ResortClubs()),
+            onPressed: () => _sortClubs(context),
           ),
         ],
       ),
       body: ClubsBody(),
     );
   }
+
+  void _sortClubs(BuildContext context) =>
+      context.read<ClubBloc>().add(ResortClubs());
 }
 
 class ClubsBody extends StatefulWidget {
@@ -41,90 +45,31 @@ class _ClubsBodyState extends State<ClubsBody> {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<ClubBloc, ClubState>(
+          buildWhen: (previous, current) => current is! SortedBy,
           builder: (context, state) {
-            if (state is Empty) {
-              return MessageDisplay(message: 'No data');
-            } else if (state is Error) {
-              return MessageDisplay(message: state.message);
-            } else if (state is Loading) {
-              return LoadingWidget();
-            } else if (state is Loaded) {
-              return ClubsDisplay(state: state);
-            }
-            return MessageDisplay(message: 'Unhandled State');
+            return _releaseWidget(state);
           },
         ),
       ),
     );
   }
 
+  Widget _releaseWidget(ClubState state) {
+    if (state is Empty) {
+      return MessageDisplay(message: 'No data');
+    } else if (state is Error) {
+      return MessageDisplay(message: state.message);
+    } else if (state is Loading) {
+      return LoadingWidget();
+    } else if (state is Loaded) {
+      return ClubsDisplay(state: state);
+    }
+    return MessageDisplay(message: 'Unhandled State');
+  }
+
   @override
   void initState() {
     super.initState();
-    context.read<ClubBloc>().add(GetClubsE());
-  }
-}
-
-class ClubsDisplay extends StatelessWidget {
-  final Loaded state;
-
-  ClubsDisplay({
-    this.state,
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: state.clubs.length,
-      itemBuilder: (context, index) {
-        Club club = state.clubs.elementAt(index);
-        return CustomListTile(
-          club: club,
-          onTap: () async {},
-        );
-      },
-    );
-  }
-}
-
-class LoadingWidget extends StatelessWidget {
-  const LoadingWidget({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 3,
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
-  }
-}
-
-class MessageDisplay extends StatelessWidget {
-  const MessageDisplay({
-    Key key,
-    @required this.message,
-  }) : super(key: key);
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 3,
-      child: Center(
-        child: SingleChildScrollView(
-          child: Text(
-            message,
-            style: TextStyle(fontSize: 25.0),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
+    context.read<ClubBloc>().add(GetClubsOnInit());
   }
 }
