@@ -16,6 +16,14 @@ class Loaded extends ClubState {
   });
 }
 
+class SortedBy extends ClubState {
+  final bool ascOrder;
+
+  SortedBy({
+    @required this.ascOrder,
+  });
+}
+
 class Error extends ClubState {
   final String message;
 
