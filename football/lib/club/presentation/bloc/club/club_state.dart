@@ -1,5 +1,6 @@
-import 'package:football/club/domain/entities/club.dart';
 import 'package:meta/meta.dart';
+
+import '../../../domain/entities/club.dart';
 
 @immutable
 abstract class ClubState {}

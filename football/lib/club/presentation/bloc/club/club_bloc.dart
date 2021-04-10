@@ -2,14 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/club/domain/usecases/get_clubs.dart';
-import 'package:football/core/error/failure_extensions.dart';
 
+import '../../../../core/error/failure_extensions.dart';
+import '../../../domain/entities/club.dart';
+import '../../../domain/usecases/get_clubs.dart';
 import 'bloc.dart';
-
-const String SERVER_FAILURE_MESSAGE = 'Server Failure';
-const String CACHE_FAILURE_MESSAGE = 'Cache Failure';
 
 class ClubBloc extends Bloc<ClubEvent, ClubState> {
   final GetClubs getClubs;
@@ -17,9 +14,9 @@ class ClubBloc extends Bloc<ClubEvent, ClubState> {
   List<Club> cachedClubs = [];
 
   ClubBloc({
-    @required GetClubs cubs,
-  })  : assert(cubs != null),
-        getClubs = cubs,
+    @required GetClubs clubs,
+  })  : assert(clubs != null),
+        getClubs = clubs,
         super(Empty());
 
   @override

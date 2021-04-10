@@ -1,5 +1,4 @@
-import 'package:football/club/presentation/bloc/club/bloc.dart';
-
+import '../../core/constants/texts.dart';
 import 'failure.dart';
 
 extension FailureExtension on Failure {
@@ -10,7 +9,7 @@ extension FailureExtension on Failure {
       case CacheFailure:
         return CACHE_FAILURE_MESSAGE;
       default:
-        return 'Unexpected error';
+        return UNEXPECTED_ERROR;
     }
   }
 }

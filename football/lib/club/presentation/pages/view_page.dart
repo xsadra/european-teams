@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/club/presentation/widgets/detail_text.dart';
-import 'package:football/locale/app_localization.dart';
+
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/styles.dart';
+import '../../../core/constants/texts.dart';
+import '../../../locale/app_localization.dart';
+import '../../domain/entities/club.dart';
+import '../widgets/detail_text.dart';
 
 class ViewClubPage extends StatelessWidget {
   final Club club;
@@ -13,12 +17,14 @@ class ViewClubPage extends StatelessWidget {
     AppLocalizations msg = AppLocalizations.of(context);
 
     final String firstMessage = msg.firstMessage
-        .replaceFirst('xCountry', club.country)
-        .replaceFirst('xValue', club.value.toString());
+        .replaceFirst(kReplaceCountry, club.country)
+        .replaceFirst(kReplaceValue, club.value.toString());
     final String secondMessage = msg.secondMessage
-        .replaceFirst('xVictorious', club.europeanTitles.toString());
+        .replaceFirst(kReplaceVictorious, club.europeanTitles.toString());
+    const errorIcon =
+        const Icon(Icons.error, color: Colors.white70, size: 120.0);
     return MaterialApp(
-      theme: ThemeData().copyWith(primaryColor: const Color(0xFF01C13B)),
+      theme: ThemeData().copyWith(primaryColor: kColorMain),
       home: Scaffold(
         appBar: AppBar(
           title: Text(club.name),
@@ -34,16 +40,14 @@ class ViewClubPage extends StatelessWidget {
           children: [
             Container(
               height: 200.0,
-              color: const Color(0xFF333333),
+              color: kColorViewClubPageIconBackground,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const SizedBox(height: 24.0),
                   Expanded(
-                    child: club.hasImage
-                        ? Image.network(club.image)
-                        : const Icon(Icons.error,
-                            color: Colors.white70, size: 120.0),
+                    child:
+                        club.hasImage ? Image.network(club.image) : errorIcon,
                   ),
                   _clubCountryText(club.country)
                 ],
@@ -54,7 +58,7 @@ class ViewClubPage extends StatelessWidget {
               children: [
                 DetailText(
                   children: <TextSpan>[
-                    TextSpan(text: msg.club + ' '),
+                    TextSpan(text: msg.club + SPACE),
                     _clubNameText(),
                     TextSpan(
                       text: firstMessage,
@@ -85,11 +89,7 @@ class ViewClubPage extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16.0, bottom: 16.0),
           child: Text(
             text,
-            style: const TextStyle(
-              color: Colors.white70,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            style: kStyleClubCountryText,
           ),
         )
       ],
@@ -99,7 +99,7 @@ class ViewClubPage extends StatelessWidget {
   TextSpan _clubNameText() {
     return TextSpan(
       text: club.name,
-      style: const TextStyle(fontWeight: FontWeight.bold),
+      style: kStyleClubNameText,
     );
   }
 }

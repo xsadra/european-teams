@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/core/error/failure.dart';
+
+import '../../../core/error/failure.dart';
+import '../entities/club.dart';
 
 abstract class ClubRepository {
   Future<Either<Failure, List<Club>>> getClubs();

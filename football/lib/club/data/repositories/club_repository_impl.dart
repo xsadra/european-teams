@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:football/club/data/datasources/club_local_data_source.dart';
-import 'package:football/club/data/datasources/club_remote_data_source.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/club/domain/repository/club_repository.dart';
-import 'package:football/core/error/exceptions.dart';
-import 'package:football/core/error/failure.dart';
-import 'package:football/core/platform/network_info.dart';
+
+import '../../../core/error/exceptions.dart';
+import '../../../core/error/failure.dart';
+import '../../../core/platform/network_info.dart';
+import '../../domain/entities/club.dart';
+import '../../domain/repository/club_repository.dart';
+import '../datasources/datasources.dart';
 
 class ClubRepositoryImpl implements ClubRepository {
   final ClubLocalDataSource localDataSource;

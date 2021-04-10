@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:football/club/presentation/bloc/club/bloc.dart';
+
+import '../../presentation/bloc/club/bloc.dart';
 
 class ActionIconButton extends StatelessWidget {
   final String imagePath;
@@ -18,7 +19,7 @@ class ActionIconButton extends StatelessWidget {
       icon: BlocBuilder<ClubBloc, ClubState>(
         buildWhen: (previous, current) => current is SortedBy,
         builder: (context, state) {
-          bool ascOrder = false;
+          bool ascOrder = true;
           if (state is SortedBy) {
             ascOrder = state.ascOrder;
           }

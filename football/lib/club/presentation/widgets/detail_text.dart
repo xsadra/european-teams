@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/styles.dart';
+
 class DetailText extends StatelessWidget {
   const DetailText({
     Key key,
@@ -11,12 +13,10 @@ class DetailText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: kPaddingAll_8,
       child: RichText(
         text: TextSpan(
-          style: const TextStyle(
-            color: Colors.black,
-          ),
+          style: kStyleDetailText,
           children: children,
         ),
       ),

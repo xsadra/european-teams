@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:football/club/data/models/club_model.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/core/error/exceptions.dart';
 
-const API_URL = 'https://public.allaboutapps.at/hiring/clubs.json';
+import '../../../core/constants/texts.dart';
+import '../../../core/error/exceptions.dart';
+import '../../domain/entities/club.dart';
+import '../models/club_model.dart';
 
 abstract class ClubRemoteDataSource {
   ///Calls the https://public.allaboutapps.at/hiring/clubs.json endpoint

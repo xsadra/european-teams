@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/constants/styles.dart';
+
 class MessageDisplay extends StatelessWidget {
   const MessageDisplay({
     Key key,
@@ -16,7 +18,7 @@ class MessageDisplay extends StatelessWidget {
         child: SingleChildScrollView(
           child: Text(
             message,
-            style: TextStyle(fontSize: 25.0),
+            style: kStyleMessageDisplay,
             textAlign: TextAlign.center,
           ),
         ),

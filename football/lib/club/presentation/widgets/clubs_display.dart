@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:football/club/domain/entities/club.dart';
-import 'package:football/club/presentation/bloc/club/bloc.dart';
 
+import '../../../club/domain/entities/club.dart';
+import '../../presentation/bloc/club/bloc.dart';
 import '../routes.dart';
 import 'custom_list_tile.dart';
 
@@ -29,7 +29,4 @@ class ClubsDisplay extends StatelessWidget {
 }
 
 void _navigateToViewClubPage(BuildContext context, Club club) =>
-    Routes.sailor.navigate(
-      RoutePaths.viewClub,
-      args: club,
-    );
+    Routes.sailor.navigate(RoutePaths.viewClub, args: club);

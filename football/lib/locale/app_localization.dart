@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:football/l10n/messages_all.dart';
 import 'package:intl/intl.dart';
+
+import '../core/constants/texts.dart';
+import '../l10n/messages_all.dart';
 
 class AppLocalizations {
   static Future<AppLocalizations> load(Locale locale) {
@@ -18,23 +20,23 @@ class AppLocalizations {
 
   // list of locales
   String get appTitle => Intl.message(
-        'all about clubs',
-        name: 'appTitle',
+        APP_TITLE_VALUE,
+        name: APP_TITLE,
       );
 
   String get club => Intl.message(
-        'club',
-        name: 'club',
+        CLUB,
+        name: CLUB,
       );
 
   String get firstMessage => Intl.message(
-        ' from xCountry is worth xValue million euros',
-        name: 'firstMessage',
+        FIRST_MESSAGE_VALUE,
+        name: FIRST_MESSAGE,
       );
 
   String get secondMessage => Intl.message(
-        ' has so far achieved xVictorious victories at European level',
-        name: 'secondMessage',
+        SECOND_MESSAGE_VALUE,
+        name: SECOND_MESSAGE,
       );
 }
 
@@ -44,8 +46,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationDelegate(this.overriddenLocale);
 
   @override
-  bool isSupported(Locale locale) =>
-      ['en', 'de', 'pl'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => [EN, DE, PL].contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) => AppLocalizations.load(locale);

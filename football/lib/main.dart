@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:football/club/presentation/pages/pages.dart';
-import 'package:football/injection_container.dart' as injection;
 
 import 'club/presentation/bloc/club/bloc.dart';
+import 'club/presentation/pages/pages.dart';
 import 'club/presentation/routes.dart';
+import 'core/constants/colors.dart';
+import 'core/constants/texts.dart';
+import 'injection_container.dart' as injection;
 import 'injection_container.dart';
 import 'locale/app_localization.dart';
 
@@ -18,13 +20,13 @@ void main() async {
 
 class Main extends StatelessWidget {
   final AppLocalizationDelegate _localeOverrideDelegate =
-      AppLocalizationDelegate(Locale('en', 'US'));
+      const AppLocalizationDelegate(Locale(EN, US));
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-      theme: ThemeData().copyWith(primaryColor: Color(0xFF01C13B)),
+      theme: ThemeData().copyWith(primaryColor: kColorMain),
       home: BlocProvider(
         create: (context) => sl<ClubBloc>(),
         child: ClubsPage(),
@@ -36,11 +38,11 @@ class Main extends StatelessWidget {
     );
   }
 
-  List<Locale> _supportedLocales() => [
-        Locale('en', 'GB'),
-        Locale('de', 'AT'),
-        Locale('de', 'DE'),
-        Locale('pl', 'PL')
+  List<Locale> _supportedLocales() => const [
+        Locale(EN, GB),
+        Locale(DE, AT),
+        Locale(DE, DE),
+        Locale(PL, PL),
       ];
 
   List<LocalizationsDelegate> _localizationsDelegates() => [

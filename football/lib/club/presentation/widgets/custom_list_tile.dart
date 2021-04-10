@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:football/club/domain/entities/club.dart';
+
+import '../../../core/constants/styles.dart';
+import '../../domain/entities/club.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile({
@@ -18,7 +20,7 @@ class CustomListTile extends StatelessWidget {
         TextButton(
           onPressed: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            padding: kPaddingVertical_8,
             child: Row(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -57,30 +59,28 @@ class CustomListTile extends StatelessWidget {
         children: [
           Text(
             club.value.toString() + " Millionen",
-            style: const TextStyle(color: Colors.black87),
+            style: kStyleClubValue,
           ),
         ],
       );
 
   Text _clubCountry() => Text(
         club.country,
-        style: const TextStyle(fontSize: 10.0, color: Colors.black54),
+        style: kStyleClubCountry,
       );
 
   Text _clubName() => Text(
         club.name,
-        style: const TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 18.0,
-          color: Colors.black87,
-        ),
+        style: kStyleClubName,
       );
 
-  SizedBox _customIcon() => SizedBox(
-        height: 56.0,
-        width: 56.0,
-        child: club.hasImage
-            ? Image.network(club.image)
-            : const Icon(Icons.error, color: Colors.black26, size: 48.0),
-      );
+  SizedBox _customIcon() {
+    const errorIcon =
+        const Icon(Icons.error, color: Colors.black26, size: 48.0);
+    return SizedBox(
+      height: 56.0,
+      width: 56.0,
+      child: club.hasImage ? Image.network(club.image) : errorIcon,
+    );
+  }
 }

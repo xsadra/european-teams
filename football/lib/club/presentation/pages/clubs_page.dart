@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:football/club/presentation/bloc/club/bloc.dart';
-import 'package:football/club/presentation/widgets/widgets.dart';
-import 'package:football/locale/app_localization.dart';
 
-const kActionIconImagePath = 'assets/icons/filter.png';
+import '../../../core/constants/texts.dart';
+import '../../../locale/app_localization.dart';
+import '../../presentation/bloc/club/bloc.dart';
+import '../../presentation/widgets/widgets.dart';
 
 class ClubsPage extends StatelessWidget {
   @override
@@ -56,7 +56,7 @@ class _ClubsBodyState extends State<ClubsBody> {
 
   Widget _releaseWidget(ClubState state) {
     if (state is Empty) {
-      return MessageDisplay(message: 'No data');
+      return MessageDisplay(message: kMessageEmptyState);
     } else if (state is Error) {
       return MessageDisplay(message: state.message);
     } else if (state is Loading) {
@@ -64,7 +64,7 @@ class _ClubsBodyState extends State<ClubsBody> {
     } else if (state is Loaded) {
       return ClubsDisplay(state: state);
     }
-    return MessageDisplay(message: 'Unhandled State');
+    return MessageDisplay(message: kMessageUnhandledState);
   }
 
   @override

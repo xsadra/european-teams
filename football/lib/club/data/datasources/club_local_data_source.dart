@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:football/club/data/models/club_model.dart';
-import 'package:football/core/error/exceptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const CACHED_CLUBS = 'CACHED_CLUBS';
+import '../../../core/constants/texts.dart';
+import '../../../core/error/exceptions.dart';
+import '../models/club_model.dart';
 
 abstract class ClubLocalDataSource {
   /// Gets the cached list of [ClubModel] which was gotten the last time.
@@ -28,8 +28,7 @@ class ClubLocalDataSourceImpl implements ClubLocalDataSource {
   Future<void> cacheClubs(List<ClubModel> clubsToCache) {
     return sharedPreferences.setString(
       CACHED_CLUBS,
-      jsonEncode(
-          clubsToCache), // if doesn't work create listToJson in ClubModel
+      jsonEncode(clubsToCache),
     );
   }
 

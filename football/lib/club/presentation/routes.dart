@@ -1,5 +1,6 @@
 import 'package:sailor/sailor.dart';
 
+import '../../core/constants/texts.dart';
 import 'pages/pages.dart';
 
 class Routes {
@@ -21,8 +22,8 @@ class Routes {
 }
 
 class RoutePaths {
-  static const String clubs = '/clubs';
-  static const String viewClub = '/view_club';
+  static const String clubs = PATH_CLUBS;
+  static const String viewClub = PATH_VIEW_CLUB;
 
   RoutePaths._();
 }

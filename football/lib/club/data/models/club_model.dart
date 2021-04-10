@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:football/club/domain/entities/club.dart';
+
+import '../../domain/entities/club.dart';
 
 class ClubModel extends Club {
   ClubModel({
