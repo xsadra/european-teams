@@ -27,7 +27,7 @@ class Club with BaseArguments {
 
 class Stadium {
   final String name;
-  final BigInt size;
+  final int size;
 
   Stadium({
     @required this.name,

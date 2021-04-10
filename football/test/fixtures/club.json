@@ -1,0 +1,16 @@
+{
+  "id": "10000000-0000-0000-0000-000000000000",
+  "name": "team name",
+  "country": "country name",
+  "value": 1000,
+  "image": "https://link.com/img.png",
+  "european_titles": 1,
+  "stadium": {
+    "size": 100000,
+    "name": "stadium"
+  },
+  "location": {
+    "lat": 10.0001,
+    "lng": 11.0001
+  }
+}
